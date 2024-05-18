@@ -11,13 +11,13 @@ trait Resolver {
 object PositioningQueensFromLeftToRightResolver extends Resolver {
 
   def solve(aGrid: Grid): List[Grid] =
-    internalSolve(aGrid = aGrid, solutionSoFar = List.empty, queensAtColumnIndex = 0)
+    internalSolve(aGrid = aGrid, solutionSoFar = List.empty, columnIndex = 0)
 
-  private def internalSolve(aGrid: Grid, solutionSoFar: List[Grid], queensAtColumnIndex: Int): List[Grid] =
+  private def internalSolve(aGrid: Grid, solutionSoFar: List[Grid], columnIndex: Int): List[Grid] =
     if (aGrid.isSolved) aGrid :: solutionSoFar
     else {
-      val freeLocationsAtColumnIndex = aGrid.possibleQueenPositionsAtColumn(queensAtColumnIndex)
-      solveByColumnMovingLeftToRight(aGrid, freeLocationsAtColumnIndex, solutionSoFar, queensAtColumnIndex)
+      val freeLocationsAtColumnIndex = aGrid.possibleQueenPositionsAtColumn(columnIndex)
+      solveByColumnMovingLeftToRight(aGrid, freeLocationsAtColumnIndex, solutionSoFar, columnIndex)
     }
 
   @tailrec
@@ -30,7 +30,7 @@ object PositioningQueensFromLeftToRightResolver extends Resolver {
     freeLocations match {
       case ::(newQueenPosition, locationsLeft) =>
         val newGrid = grid.newGridWithQueenAt(newQueenPosition)
-        val newSolutions = internalSolve(newGrid, solutionsSoFar, queensAtColumnIndex = queensAtColumnIndex + 1)
+        val newSolutions = internalSolve(newGrid, solutionsSoFar, columnIndex = queensAtColumnIndex + 1)
         solveByColumnMovingLeftToRight(grid, locationsLeft, newSolutions, queensAtColumnIndex)
       case Nil => solutionsSoFar
     }

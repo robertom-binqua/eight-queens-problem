@@ -3,11 +3,11 @@ package org.binqua.examples.eightqueens
 import munit.FunSuite
 import org.binqua.examples.eightqueens.PositioningQueensFromLeftToRightResolver.solve
 
-class SimpleResolverSpec extends FunSuite {
+class PositioningQueensFromLeftToRightResolverSpec extends FunSuite {
 
   //Please see https://en.wikipedia.org/wiki/Eight_queens_puzzle
 
-  test("resolve with gridSize = 4 finds 2 solutions") {
+  test("solve with gridSize = 4 finds 2 solutions") {
     val expected =
       """| +  X  +  +
          | +  +  +  X
@@ -28,7 +28,7 @@ class SimpleResolverSpec extends FunSuite {
     )
   }
 
-  test("resolve with gridSize = 5 finds 10 solutions") {
+  test("solve with gridSize = 5 finds 10 solutions") {
     val expected =
       """| +  +  X  +  +
          | +  +  +  +  X
@@ -107,21 +107,21 @@ class SimpleResolverSpec extends FunSuite {
     )
   }
 
-  test("resolve with gridSize = 8 finds 92 solutions") {
+  test("solve with gridSize = 8 finds 92 solutions") {
     assertEquals(
       PositioningQueensFromLeftToRightResolver.solve(Grid(gridSize = 8, queensPositions = List.empty)).size,
       92
     )
   }
 
-  test("resolve with gridSize = 9 finds 352 solutions") {
+  test("solve with gridSize = 9 finds 352 solutions") {
     assertEquals(
       PositioningQueensFromLeftToRightResolver.solve(Grid(gridSize = 9, queensPositions = List.empty)).size,
       352
     )
   }
 
-  test("resolve with gridSize = 10 finds 724 solutions") {
+  test("solve with gridSize = 10 finds 724 solutions") {
     assertEquals(
       PositioningQueensFromLeftToRightResolver.solve(Grid(gridSize = 10, queensPositions = List.empty)).size,
       724
